@@ -4,7 +4,7 @@ import { Image } from "../../App.types";
 
 type Props = {
   imageList: Image[];
-  openModal: (imageUrl: string) => void;
+  openModal: (image: string | Image) => void;
 };
 
 const ImageGallery = ({ imageList, openModal }: Props) => {
@@ -14,7 +14,7 @@ const ImageGallery = ({ imageList, openModal }: Props) => {
       const imgID = imgItem.dataset.id;
       const clickedImageItem = imageList.find((image) => image.id === imgID);
       if (clickedImageItem) {
-        openModal(clickedImageItem.urls.regular);
+        openModal(clickedImageItem);
       }
     }
   };
