@@ -3,6 +3,7 @@ import { Image } from "../../App.types";
 
 type Props = {
   imageItem: Image;
+  onImageClick: (imageUrl: string) => void;
 };
 
 function ImageCard({

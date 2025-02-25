@@ -4,17 +4,17 @@ import { Image } from "../../App.types";
 
 type Props = {
   imageList: Image[];
-  openModal: (image: Image) => void;
+  openModal: (imageUrl: string) => void;
 };
 
 const ImageGallery = ({ imageList, openModal }: Props) => {
-  const imageClick = (event: MouseEvent<HTMLUListElement>): void => {
+  const imageClick = (event: React.MouseEvent<HTMLUListElement>) => {
     const imgItem = (event.target as Element).closest("li");
     if (imgItem) {
       const imgID = imgItem.dataset.id;
       const clickedImageItem = imageList.find((image) => image.id === imgID);
       if (clickedImageItem) {
-        openModal(clickedImageItem);
+        openModal(clickedImageItem.urls.regular);
       }
     }
   };
