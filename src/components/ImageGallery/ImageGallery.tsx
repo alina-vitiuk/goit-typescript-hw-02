@@ -1,10 +1,15 @@
 import ImageCard from "../ImageCard/ImageCard";
-import PropTypes from "prop-types";
 import css from "./ImageGallery.module.css";
+import { Image } from "../../App.types";
 
-const ImageGallery = ({ imageList, openModal }) => {
-  const imageClick = (event) => {
-    const imgItem = event.target.closest("li");
+type Props = {
+  imageList: Image[];
+  openModal: (image: Image) => void;
+};
+
+const ImageGallery = ({ imageList, openModal }: Props) => {
+  const imageClick = (event: MouseEvent<HTMLUListElement>): void => {
+    const imgItem = (event.target as Element).closest("li");
     if (imgItem) {
       const imgID = imgItem.dataset.id;
       const clickedImageItem = imageList.find((image) => image.id === imgID);
@@ -26,15 +31,6 @@ const ImageGallery = ({ imageList, openModal }) => {
       )}
     </section>
   );
-};
-
-ImageGallery.propTypes = {
-  imageList: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  openModal: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;

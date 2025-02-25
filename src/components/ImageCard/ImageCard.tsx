@@ -1,5 +1,9 @@
 import css from "./ImageCard.module.css";
-import PropTypes from "prop-types";
+import { Image } from "../../App.types";
+
+type Props = {
+  imageItem: Image;
+};
 
 function ImageCard({
   imageItem: {
@@ -7,7 +11,7 @@ function ImageCard({
     urls: { small, regular },
   },
   onImageClick,
-}) {
+}: Props) {
   return (
     <div className={css.galleryThumb}>
       <img
@@ -21,14 +25,4 @@ function ImageCard({
   );
 }
 
-ImageCard.propTypes = {
-  onImageClick: PropTypes.func,
-  imageItem: PropTypes.shape({
-    alt_description: PropTypes.string,
-    urls: PropTypes.shape({
-      small: PropTypes.string,
-      regular: PropTypes.string,
-    }),
-  }),
-};
 export default ImageCard;

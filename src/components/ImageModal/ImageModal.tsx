@@ -2,9 +2,15 @@ import Modal from "react-modal";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import css from "./ImageModal.module.css";
 import { useEffect } from "react";
-import PropTypes from "prop-types";
+import { Image } from "../../App.types";
 
-const ImageModal = ({ isOpen, onCloseModal, image }) => {
+type Props = {
+  isOpen: boolean;
+  image: Image;
+  onCloseModal: () => void;
+};
+
+const ImageModal = ({ isOpen, onCloseModal, image }: Props) => {
   useEffect(() => {
     if (isOpen) {
       disableBodyScroll(document.body);
@@ -27,17 +33,6 @@ const ImageModal = ({ isOpen, onCloseModal, image }) => {
       />
     </Modal>
   );
-};
-
-ImageModal.propTypes = {
-  isOpen: PropTypes.bool,
-  onCloseModal: PropTypes.bool,
-  image: PropTypes.shape({
-    urls: PropTypes.shape({
-      regular: PropTypes.string,
-    }),
-    alt_description: PropTypes.string,
-  }),
 };
 
 export default ImageModal;

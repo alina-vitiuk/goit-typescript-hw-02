@@ -1,11 +1,17 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikHelpers, FormikValues } from "formik";
 import { FiSearch } from "react-icons/fi";
-import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (values, actions) => {
+type Props = {
+  onSubmit: (value: string) => void;
+};
+
+const SearchBar = ({ onSubmit }: Props) => {
+  const handleSubmit = (
+    values: FormikValues,
+    actions: FormikHelpers<any>
+  ): void => {
     const formattedSearch = values.search.trim().toLowerCase();
     if (formattedSearch === "") {
       toast.error("Sorry, your search query is empty. Please try again!");
@@ -37,10 +43,6 @@ const SearchBar = ({ onSubmit }) => {
       </header>
     </>
   );
-};
-
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func,
 };
 
 export default SearchBar;

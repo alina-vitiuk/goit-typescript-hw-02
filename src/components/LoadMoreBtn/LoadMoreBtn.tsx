@@ -1,7 +1,10 @@
 import css from "./LoadMoreBtn.module.css";
-import PropTypes from "prop-types";
 
-const LoadMoreBtn = ({ onClick }) => {
+type Props = {
+  onClick: () => void;
+};
+
+const LoadMoreBtn = ({ onClick }: Props) => {
   return (
     <div className={css.btnThumb}>
       <button className={css.btnLoad} onClick={onClick}>
@@ -9,10 +12,6 @@ const LoadMoreBtn = ({ onClick }) => {
       </button>
     </div>
   );
-};
-LoadMoreBtn.propTypes = {
-  onClick: PropTypes.func,
-  isVisible: PropTypes.func,
 };
 
 export default LoadMoreBtn;

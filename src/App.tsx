@@ -10,17 +10,18 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import LoaderMore from "./components/Loader/LoaderMore";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { Image } from "./App.types";
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [search, setSearch] = useState("");
-  const [error, setError] = useState(false);
-  const [loadingSpiner, setLoadingSpiner] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [images, setImages] = useState<Image[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [search, setSearch] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+  const [loadingSpiner, setLoadingSpiner] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (!search) {
@@ -58,13 +59,13 @@ function App() {
     return totalPages >= 1 && totalPages !== page && images;
   };
 
-  const openModal = (image) => {
+  const openModal = (image: Image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
   const closeModal = () => setModalIsOpen(false);
 
-  const handleChangeQuery = (newSearch) => {
+  const handleChangeQuery = (newSearch: string) => {
     if (newSearch === search) {
       return;
     }
