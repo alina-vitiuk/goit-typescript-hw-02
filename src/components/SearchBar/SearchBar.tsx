@@ -7,10 +7,14 @@ type Props = {
   onSubmit: (value: string) => void;
 };
 
+interface FormValues {
+  search: string;
+}
+
 const SearchBar = ({ onSubmit }: Props) => {
   const handleSubmit = (
-    values: FormikValues,
-    actions: FormikHelpers<any>
+    values: FormValues,
+    actions: FormikHelpers<FormValues>
   ): void => {
     const formattedSearch = values.search.trim().toLowerCase();
     if (formattedSearch === "") {

@@ -51,21 +51,21 @@ function App() {
     fetchPhotoApi();
   }, [page, search]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setPage((prev) => prev + 1);
   };
 
-  const isVisible = () => {
+  const isVisible = (): boolean | Image[] => {
     return totalPages >= 1 && totalPages !== page && images;
   };
 
-  const openModal = (image: Image) => {
+  const openModal = (image: Image): void => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
-  const closeModal = () => setModalIsOpen(false);
+  const closeModal = (): void => setModalIsOpen(false);
 
-  const handleChangeQuery = (newSearch: string) => {
+  const handleChangeQuery = (newSearch: string): void => {
     if (newSearch === search) {
       return;
     }

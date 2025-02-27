@@ -4,7 +4,7 @@ import { Image } from "../../App.types";
 
 type Props = {
   imageList: Image[];
-  openModal: (image: string | Image) => void;
+  openModal: (image: Image) => void;
 };
 
 const ImageGallery = ({ imageList, openModal }: Props) => {
@@ -24,7 +24,7 @@ const ImageGallery = ({ imageList, openModal }: Props) => {
         <ul className={css.gallery} onClick={imageClick}>
           {imageList.map((img) => (
             <li className={css.galleryItem} key={img.id} data-id={img.id}>
-              <ImageCard imageItem={img} onImageClick={openModal} />
+              <ImageCard imageItem={img} />
             </li>
           ))}
         </ul>
