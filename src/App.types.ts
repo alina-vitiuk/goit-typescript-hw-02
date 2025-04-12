@@ -8,3 +8,9 @@ export interface Image {
     regular: string;
   };
 }
+
+export interface UnsplashApiResponse {
+  total: number;
+  total_pages: number;
+  results: Image[];
+}

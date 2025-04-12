@@ -11,6 +11,7 @@ import LoaderMore from "./components/Loader/LoaderMore";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
 import { Image } from "./App.types";
+import { UnsplashApiResponse } from "./App.types";
 
 function App() {
   const [images, setImages] = useState<Image[]>([]);
@@ -28,10 +29,13 @@ function App() {
       setLoadingMore(false);
       return;
     }
-    const fetchPhotoApi = async () => {
+    const fetchPhotoApi = async (): Promise<void> => {
       try {
         setLoadingSpiner(true);
-        const dataImages = await getImagesUnplash(search, page);
+        const dataImages: UnsplashApiResponse = await getImagesUnplash(
+          search,
+          page
+        );
         setTotalPages(dataImages.total_pages);
         if (dataImages.total === 0) {
           toast.error(
